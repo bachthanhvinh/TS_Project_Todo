@@ -3,12 +3,14 @@ import FullList from "../model/FullList"
 interface DOMList {
   ul: HTMLUListElement,
   clear(): void,
-  render(fullList: FullList): void,
+  render(fullList: FullList): void
 }
 
 export default class ListTemplate implements DOMList {
      
       ul: HTMLUListElement
+
+      static instance: ListTemplate = new ListTemplate()
 
       constructor() {
         this.ul = document.querySelector('.listItems') as HTMLUListElement
@@ -18,7 +20,7 @@ export default class ListTemplate implements DOMList {
         this.ul.innerHTML = ''
       }
 
-      reder(fullList: FullList) {
+      render(fullList: FullList) {
         this.clear()
         
         fullList.list.forEach(item => {
@@ -43,7 +45,16 @@ export default class ListTemplate implements DOMList {
           li.append(label)
 
           const button = document.createElement('button') as HTMLButtonElement
-          
+          button.className = 'button'
+          button.textContent= 'X'
+          li.append(button)
+
+          button.addEventListener('click', () => {
+            fullList.removeItem(item.id)
+            this.render(fullList)
+          })
+
+          this.ul.append(li)
         })
       }
      
