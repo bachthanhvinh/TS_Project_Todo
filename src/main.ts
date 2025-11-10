@@ -1,7 +1,7 @@
-import '.css/style.css'
+import './css/style.css'
+import ListTemplate from './templates/ListTemplate'
 import FullList from './model/FullList'
 import ListItem from './model/ListItem'
-import ListTemplate from './templates/ListTemplate'
 
 const initApp = (): void => {
   const fullList = FullList.instance
@@ -20,8 +20,9 @@ const initApp = (): void => {
     ? parseInt(fullList.list[fullList.list.length - 1].id) + 1 
     : 1
     const newItem = new ListItem(itemId.toString(), newEntryText)
-
+    
     fullList.addItem(newItem)
+    input.value = ""
     templates.render(fullList)
   })
 

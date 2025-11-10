@@ -13,14 +13,14 @@ export default class ListTemplate implements DOMList {
       static instance: ListTemplate = new ListTemplate()
 
       constructor() {
-        this.ul = document.querySelector('.listItems') as HTMLUListElement
+        this.ul = document.querySelector('#listItems') as HTMLUListElement
       }
 
       clear(): void {
-        this.ul.innerHTML = ''
+        this.ul.innerHTML = ""
       }
 
-      render(fullList: FullList) {
+      render(fullList: FullList): void {
         this.clear()
         
         fullList.list.forEach(item => {
